@@ -1,0 +1,16 @@
+.photo__likes-counter {
+  font-size: 13px;
+  line-height: 16px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 400;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  }
+

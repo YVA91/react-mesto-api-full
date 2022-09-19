@@ -1,0 +1,7 @@
+.header__burger__line {
+    width: 24px;
+    border-top: 3px solid #FFFFFF;
+    display: block;
+    margin: 6px 30px 0 0;
+    transition: .5s;
+}
