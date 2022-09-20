@@ -159,9 +159,7 @@ function App() {
   function handleSubmitRegister(email, password) {
     Auth.register(email, password)
       .then((res) => {
-        console.log(res)
       if (res) {
-        setLoggedIn(true)
         history.push('/sign-in')
         setIsStatusRegister(true)
       }
