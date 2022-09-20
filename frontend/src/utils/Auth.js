@@ -44,6 +44,6 @@ export const getContent = (token) => {
     }
   })
   .then(report)
-  .then((data) => data)
+  .then(data => data)
 
 }

@@ -10,7 +10,6 @@ module.exports.getCards = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-  return true;
 };
 
 module.exports.createCards = async (req, res, next) => {
@@ -29,7 +28,6 @@ module.exports.createCards = async (req, res, next) => {
     }
     next(err);
   }
-  return true;
 };
 
 module.exports.deleteCards = async (req, res, next) => {
@@ -55,7 +53,6 @@ module.exports.deleteCards = async (req, res, next) => {
     }
     next(err);
   }
-  return true;
 };
 
 module.exports.likeCard = async (req, res, next) => {
@@ -74,7 +71,6 @@ module.exports.likeCard = async (req, res, next) => {
     }
     next(err);
   }
-  return true;
 };
 
 module.exports.dislikeCard = async (req, res, next) => {
@@ -93,5 +89,4 @@ module.exports.dislikeCard = async (req, res, next) => {
     }
     next(err);
   }
-  return true;
 };

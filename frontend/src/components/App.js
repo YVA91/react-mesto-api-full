@@ -34,6 +34,7 @@ function App() {
   
 
   useEffect(() => {
+    if(loggedIn) {
     Promise.all([api.getUserInfo(), api.getCreateCard()])
       .then(([data, cards]) => {
         setCurrentUser(data);
@@ -42,7 +43,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       })
-  }, [])
+  }}, [loggedIn])
 
   useEffect (() => {
     tokenCheck()
@@ -135,7 +136,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
     const likeStatus = isLiked ? api.deleteLike(card._id) : api.putLike(card._id)
     likeStatus.then((newCard) => {
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
@@ -196,7 +197,7 @@ function App() {
         .then((data) => {
           if (data) {
             setLoggedIn(true)
-            setHeaderUresEmail(data.data.email)
+            setHeaderUresEmail(data.email)
             history.push("/")
           }
         })
