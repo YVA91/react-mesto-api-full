@@ -1,0 +1,21 @@
+.photo__remove {
+  display: block;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 18px;
+  height: 19px;
+  margin: 0;
+  background: url(../../../images/Trash.png);
+  border: none;
+  background-repeat: no-repeat;
+  cursor: pointer;
+ flex-shrink: 0;
+ transition: opacity .5s;
+}
+
+.photo__remove:hover {
+  opacity: .5;
+}
+  
+      

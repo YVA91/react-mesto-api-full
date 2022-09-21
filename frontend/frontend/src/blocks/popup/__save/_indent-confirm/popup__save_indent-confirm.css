@@ -1,0 +1,10 @@
+.popup__save_indent-confirm {
+  margin: 38px 0 0 0;
+}
+
+
+@media screen and (max-width: 560px) {
+  .popup__save_indent-confirm {
+    margin: 28px 0 0 0;
+  }
+}

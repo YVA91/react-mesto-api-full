@@ -1,0 +1,18 @@
+.authform__field-item {
+      padding: 0 0 13px 0;
+      border: none;
+      outline: none;
+      font-family: 'Inter', Arial, sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+      box-sizing: border-box;
+      width: 100%;
+      border-bottom: 2px solid #ccc;
+      background-color: inherit;
+      color: #ccc;
+}
+
+.authform__field-item::placeholder {
+  color: #ccc;
+}
