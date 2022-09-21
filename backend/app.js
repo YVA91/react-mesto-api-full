@@ -25,7 +25,7 @@ const app = express();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ['https://yva.mesto.nomoredomains.sbs', 'http://localhost:3000'],
+    origin: 'https://yva.mesto.nomoredomains.sbs',
     credentials: true,
   }),
 );
