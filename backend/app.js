@@ -20,12 +20,12 @@ const {
   validationSignIn,
 } = require('./validation/validation');
 
-const { PORT = 3001 } = process.env;
+const { PORT = 3000 } = process.env;
 const app = express();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: 'https://yva.mesto.nomoredomains.sbs',
+    origin: ['https://yva.mesto.nomoredomains.sbs', 'http://localhost:3000'],
     credentials: true,
   }),
 );

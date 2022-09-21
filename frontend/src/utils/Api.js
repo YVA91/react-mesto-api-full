@@ -107,7 +107,7 @@ class Api {
   }
 }
 
-export const api = new Api ('https://api.yva.mesto.nomoredomains.sbs')
+export const api = new Api ('https://api.yva.mesto.nomoredomains.sbs' || 'http://localhost:3000')
 
 
 
