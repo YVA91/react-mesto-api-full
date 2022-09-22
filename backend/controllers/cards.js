@@ -6,7 +6,7 @@ const { ForbiddenError } = require('../errors/ForbiddenError');
 module.exports.getCards = async (req, res, next) => {
   try {
     const cards = await Card.find({});
-    res.status(200).send(cards);
+    res.send(cards);
   } catch (err) {
     next(err);
   }
@@ -14,19 +14,20 @@ module.exports.getCards = async (req, res, next) => {
 
 module.exports.createCards = async (req, res, next) => {
   const {
-    name, link, likes, createdAt,
+    name, link,
   } = req.body;
   const owner = req.user._id;
   try {
     const cards = await Card({
-      name, link, likes, createdAt, owner,
+      name, link, owner,
     }).save();
     res.status(200).send(cards);
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new BadRequestError('Переданы некорректные данные'));
+    } else {
+      next(err);
     }
-    next(err);
   }
 };
 
@@ -36,10 +37,7 @@ module.exports.deleteCards = async (req, res, next) => {
     const CardId = await Card.findById(Id);
     if (CardId) {
       if (req.user._id === CardId.owner._id.toString()) {
-        await Card.findByIdAndRemove(CardId, {
-          new: true,
-          runValidators: true,
-        });
+        await Card.remove(CardId);
         res.status(200).send({ CardId });
       } else {
         throw new ForbiddenError('Недостаточно прав');
@@ -50,8 +48,9 @@ module.exports.deleteCards = async (req, res, next) => {
   } catch (err) {
     if (err.name === 'CastError') {
       next(new BadRequestError('Переданы некорректные данные'));
+    } else {
+      next(err);
     }
-    next(err);
   }
 };
 
@@ -68,8 +67,9 @@ module.exports.likeCard = async (req, res, next) => {
   } catch (err) {
     if (err.name === 'CastError') {
       next(new BadRequestError('Переданы некорректные данные'));
+    } else {
+      next(err);
     }
-    next(err);
   }
 };
 
@@ -86,7 +86,8 @@ module.exports.dislikeCard = async (req, res, next) => {
   } catch (err) {
     if (err.name === 'CastError') {
       next(new BadRequestError('Переданы некорректные данные'));
+    } else {
+      next(err);
     }
-    next(err);
   }
 };

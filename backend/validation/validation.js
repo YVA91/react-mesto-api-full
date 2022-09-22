@@ -11,7 +11,7 @@ const validatorUrl = (value) => {
 
 module.exports.validationGetUserById = celebrate({
   params: Joi.object().keys({
-    userId: Joi.string().required().length(24),
+    userId: Joi.string().length(24).hex().required(),
   }),
 });
 
@@ -30,7 +30,7 @@ module.exports.validationUpdateUserAvatar = celebrate({
 
 module.exports.validationCardId = celebrate({
   params: Joi.object().keys({
-    cardId: Joi.string().required().length(24),
+    cardId: Joi.string().length(24).hex().required(),
   }),
 });
 
@@ -54,6 +54,6 @@ module.exports.validationSignUp = celebrate({
     about: Joi.string().min(2).max(30),
     avatar: Joi.string().regex(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)/),
     email: Joi.string().required().email(),
-    password: Joi.string().required().min(2).max(30),
+    password: Joi.string().required(),
   }),
 });

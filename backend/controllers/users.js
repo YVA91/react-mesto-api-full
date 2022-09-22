@@ -41,8 +41,9 @@ module.exports.getUserById = async (req, res, next) => {
   } catch (err) {
     if (err.name === 'CastError') {
       next(new BadRequestError('Переданы некорректные данные'));
+    } else {
+      next(err);
     }
-    next(err);
   }
 };
 
@@ -64,11 +65,11 @@ module.exports.createUsers = async (req, res, next) => {
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new BadRequestError('Переданы некорректные данные'));
-    }
-    if (err.name === 'MongoServerError') {
+    } else if (err.name === 'MongoServerError') {
       next(new ConflictError('Пользователь с таким электнонным адресом уже зарегистрирован'));
+    } else {
+      next(err);
     }
-    next(err);
   }
 };
 
@@ -81,13 +82,11 @@ module.exports.updateUserInfo = async (req, res, next) => {
     });
     res.status(200).send(users);
   } catch (err) {
-    if (err.name === 'CastError') {
-      throw new NotFoundError('Запрашиваемый пользователь не найден');
-    }
     if (err.name === 'ValidationError') {
       next(new BadRequestError('Переданы некорректные данные'));
+    } else {
+      next(err);
     }
-    next(err);
   }
 };
 
@@ -102,11 +101,9 @@ module.exports.updateUserAvatar = async (req, res, next) => {
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new BadRequestError('Переданы некорректные данные'));
+    } else {
+      next(err);
     }
-    if (err.name === 'CastError') {
-      throw new NotFoundError('Запрашиваемый пользователь не найден');
-    }
-    next(err);
   }
 };
 
@@ -124,9 +121,6 @@ module.exports.login = async (req, res, next) => {
     const token = jwt.sign({ _id: users._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
     res.status(200).send({ token });
   } catch (err) {
-    if (err.name === 'CastError') {
-      next(new BadRequestError('Переданы некорректные данные'));
-    }
     next(err);
   }
 };

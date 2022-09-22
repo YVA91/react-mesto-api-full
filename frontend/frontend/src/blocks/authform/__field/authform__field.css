@@ -1,9 +1,0 @@
-.authform__field {
-  display: block;
-  width: 100%;
-  margin: 0 0 57px 0;
-}
-
-.authform__field:last-child {
-  margin: 0;
-}

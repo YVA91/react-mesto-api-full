@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.yva.mesto.nomoredomains.sbs';
+export const BASE_URL = 'http://localhost:3001';
 
 const report = (res) => {
   if (res.ok) {

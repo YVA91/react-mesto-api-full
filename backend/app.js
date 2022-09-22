@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const cors = require('cors');
@@ -10,7 +11,6 @@ const {
   login,
   createUsers,
 } = require('./controllers/users');
-require('dotenv').config();
 const { errorHandler } = require('./middlewares/errorHandler');
 const { NotFoundError } = require('./errors/NotFoundError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -20,12 +20,12 @@ const {
   validationSignIn,
 } = require('./validation/validation');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 const app = express();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: 'https://yva.mesto.nomoredomains.sbs',
+    origin: 'http://localhost:3000',
     credentials: true,
   }),
 );
@@ -41,10 +41,10 @@ app.post('/signup', validationSignUp, createUsers);
 app.use(auth);
 app.use('/', RoutesUsers);
 app.use('/', RoutesCards);
-app.use(errorLogger);
 app.use((req, res, next) => {
   next(new NotFoundError('Неправильный путь'));
 });
+app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
